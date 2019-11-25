@@ -1,0 +1,27 @@
+Source: glibc-new
+Priority: optional
+Maintainer: Josua Mayer <josua@solid-run.com>
+Build-Depends:
+ debhelper (>= 9),
+ dh-exec (>=0.3),
+ libselinux-dev,
+Standards-Version: 3.9.5
+Section: libs
+Homepage: <insert the upstream URL, if relevant>
+#Vcs-Git: git://anonscm.debian.org/collab-maint/glibc-new.git
+#Vcs-Browser: http://anonscm.debian.org/?p=collab-maint/glibc-new.git;a=summary
+
+Package: glibc-new-dev
+Section: libdevel
+Architecture: any
+Depends: glibc-new (= ${binary:Version}), ${misc:Depends}
+Description: Development Files and Libraries for the GNU C library
+ Provides development files and libraries for the more recent version of the GNU C library.
+
+Package: glibc-new
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Replaces: libc6
+Pre-Depends: libc6
+Description: Updated GNU libc
+ Provides a more recent version of the GNU C library for use by applications.

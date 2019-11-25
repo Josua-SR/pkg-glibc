@@ -1,0 +1,3 @@
+#! /usr/bin/dh-exec
+opt/glibc-new/lib/ld-2.29.so lib/${DEB_HOST_MULTIARCH}/ld-linux-${DEB_HOST_GNU_CPU}.so.1
+opt/glibc-new/lib/ld-2.29.so lib/ld-linux-${DEB_HOST_GNU_CPU}.so.1

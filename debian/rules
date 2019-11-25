@@ -1,0 +1,19 @@
+#!/usr/bin/make -f
+
+# Debian Overrides
+export DEB_BUILD_MAINT_OPTIONS=hardening=-fortify,-format
+export DEB_BUILD_OPTIONS=nocheck
+
+# main packaging script based on dh7 syntax
+%:
+	dh $@ --sourcedirectory=glibc --builddirectory=build --parallel
+
+override_dh_auto_configure:
+	dh_auto_configure -- --enable-kernel=3.7 --with-selinux --prefix=/opt/glibc-new --libdir=/opt/glibc-new/lib --libexecdir=/opt/glibc-new/lib
+
+override_dh_auto_install:
+	install -v -m644 -D glibc-new.ld.so.conf debian/tmp/etc/ld.so.conf.d/99-glibc-new.conf
+	dh_auto_install
+
+override_dh_fixperms:
+	dh_fixperms -Xld-2.29.so
